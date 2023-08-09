@@ -1,14 +1,17 @@
 
+## About OhMyDB
+
 ```
 git clone git@github.com:70mmy/OhMyDB.git
 
-cd ../fe-service
+cd OhMyDB/fe-service
 npm install
 
 cd ../meta-service
-npm-install
+npm install
 
-cd OhMyDB/movie-service
+cd ../movie-service
+cp .env.example .env
 composer install
 
 ./vendor/bin/sail up
