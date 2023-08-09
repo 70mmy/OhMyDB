@@ -1,0 +1,70 @@
+{
+  "rabbit_version": "3.12.2",
+  "rabbitmq_version": "3.12.2",
+  "product_name": "RabbitMQ",
+  "product_version": "3.12.2",
+  "users": [
+    {
+      "name": "guest",
+      "password_hash": "nZdaUH3Oz6oVXpPnaLIzqC9txN8P/gNacdth4iFRZAP6gIYX",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": [
+        "administrator"
+      ],
+      "limits": {}
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "topic_permissions": [],
+  "parameters": [],
+  "global_parameters": [
+    {
+      "name": "internal_cluster_id",
+      "value": "rabbitmq-cluster-id-NNnagPbQrD1rz2ZnKNxacA"
+    }
+  ],
+  "policies": [],
+  "queues": [
+    {
+      "name": "movie-created",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "movie-meta-movie-created",
+      "vhost": "/",
+      "type": "topic",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "movie-meta-movie-created",
+      "vhost": "/",
+      "destination": "movie-created",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    }
+  ]
+}

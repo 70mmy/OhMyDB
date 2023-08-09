@@ -30,7 +30,7 @@ export const MovieCard = ({movie}) => {
                 }}
                 className=" movie-card"
             >
-                <Card.Body>
+                <Card.Body onClick={() => navigate(`/edit/${movie.id}`)}>
                     <LazyLoadImage
                         src={movie.images.length ? movie.images[0].url : IMAGE_UNAVAILABLE_PLACEHOLDER}
                         width={"100%"}
@@ -40,7 +40,6 @@ export const MovieCard = ({movie}) => {
                         style={{objectFit: "cover"}}
                     />
                     <Card.Title
-                        onClick={() => navigate(`/edit/${movie.id}`)}
                         className="text-center mt-3"
                         style={{cursor: "pointer"}}
                     >

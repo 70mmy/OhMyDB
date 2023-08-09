@@ -133,11 +133,11 @@ export default function Movie() {
                                         {errors?.imdb_id}
                                     </Alert>
                                 }
-                                <Button variant="primary" type="submit">
+                                <Button className={'me-1'} variant="primary" type="submit">
                                     Save
                                 </Button>
                                 {movieId !== undefined &&
-                                    <Button className="ml-1" variant="danger" type="button" onClick={() => {
+                                    <Button variant="danger" type="button" onClick={() => {
                                         deleteData(MOVIE(movieId)).then(() => {
                                             fetchMovies();
 
