@@ -1,0 +1,15 @@
+{
+  "name": "meta-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "axios": "^1.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "glob": "^10.3.3",
+    "graphql": "^16.7.1"
+  }
+}
