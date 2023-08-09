@@ -1,4 +1,6 @@
 
+## About OhMyDB
+
 ```
 git clone git@github.com:70mmy/OhMyDB.git
 
@@ -6,7 +8,7 @@ cd OhMyDB/fe-service
 npm install
 
 cd ../meta-service
-npm-install
+npm install
 
 cd ../movie-service
 composer install
