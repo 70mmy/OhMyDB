@@ -24,4 +24,5 @@ composer install
 ```
 
 At this point a front end should be available here: `http://localhost:3000`
+
 A GraphQL sandbox should be available here: `http://localhost:4000/graphql`
