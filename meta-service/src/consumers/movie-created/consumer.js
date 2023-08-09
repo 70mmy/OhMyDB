@@ -13,7 +13,9 @@ module.exports = function(msg) {
                 omdbMovie.Poster
             ]
 
-            axios.put(`http://localhost/api/movies/${movie.id}`, movie)
+            console.log(movie)
+
+            axios.put(`http://laravel/api/movies/${movie.id}`, movie)
                 .then((res) => {
                     console.log(res.data);
                 })

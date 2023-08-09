@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Models\MovieImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class MovieController extends Controller
+class MovieController
 {
     /**
      * Display a listing of the resource.
@@ -106,6 +107,20 @@ class MovieController extends Controller
 
         $movie->title = $request->title;
         $movie->imdb_id = $request->imdb_id;
+
+        foreach ($request->images ?? [] as $image) {
+            $imageModel = MovieImage::where('movie_id', $movie->id)
+                ->where('url', $image)->first();
+
+            if (!$imageModel) {
+                $imageModel = new MovieImage();
+
+                $imageModel->movie_id = $movie->id;
+                $imageModel->url = $image;
+
+                $imageModel->save();
+            }
+        }
 
         return $movie;
     }

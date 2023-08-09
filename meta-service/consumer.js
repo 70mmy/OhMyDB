@@ -2,7 +2,7 @@ var amqp = require('amqplib/callback_api');
 
 var consumers = require("./src/consumers/consumers")
 
-amqp.connect('amqp://localhost', function(connectionError, connection) {
+amqp.connect('amqp://rabbit', function(connectionError, connection) {
     if (connectionError) {
         throw connectionError;
     }

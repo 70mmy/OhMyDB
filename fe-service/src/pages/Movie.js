@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from 'react'
 import {useNavigate, useParams} from "react-router-dom";
 import {Container, Row, Col, Button, Form, Card, Alert} from 'react-bootstrap';
 import Header from '../components/Header'
-import {postData, putData} from "../helpers/request";
+import {postData, putData, deleteData} from "../helpers/request";
 import {MOVIE, MOVIES} from "../constants";
 import {AppContext} from "../context/AppContext";
 import {useLazyQuery} from '@apollo/client';
@@ -29,7 +29,7 @@ export default function Movie() {
     const [searchMovies, {data}] = useLazyQuery(SEARCH_MOVIES);
 
     useEffect(() => {
-        if (movieId !== undefined &&  movie?.id === undefined) {
+        if (movieId !== undefined && movie?.id === undefined) {
             console.log(movie)
             fetchMovie(movieId)
         } else if (Object.keys(movie).length && movieId === undefined) {
@@ -59,7 +59,10 @@ export default function Movie() {
 
                 setErrors({});
 
-                setGenericSuccesses([response.data.message]);
+                setGenericSuccesses([
+                    response.data.message,
+                    'Refresh the page to view enriched data'
+                ]);
 
                 navigate('/');
             })
@@ -103,17 +106,17 @@ export default function Movie() {
                                     </Alert>
                                 }
                                 {data?.searchMovies.map((movie, key) => {
-                                   return <div key={`movie-${movie.imdb_id}`}>
-                                       <Form.Check
-                                           name="movie"
-                                           type={'radio'}
-                                           id={`default-radio-${key}`}
-                                           label={`[${movie.year}] ${movie.title}`}
-                                           onChange={() => {
-                                               setImdbId(movie.imdb_id);
-                                           }}
-                                       />
-                                   </div>
+                                    return <div key={`movie-${movie.imdb_id}`}>
+                                        <Form.Check
+                                            name="movie"
+                                            type={'radio'}
+                                            id={`default-radio-${key}`}
+                                            label={`[${movie.year}] ${movie.title}`}
+                                            onChange={() => {
+                                                setImdbId(movie.imdb_id);
+                                            }}
+                                        />
+                                    </div>
                                 })}
                                 <Form.Group className="mb-3">
                                     <Form.Label>IMDB ID</Form.Label>
@@ -133,6 +136,17 @@ export default function Movie() {
                                 <Button variant="primary" type="submit">
                                     Save
                                 </Button>
+                                {movieId !== undefined &&
+                                    <Button className="ml-1" variant="danger" type="button" onClick={() => {
+                                        deleteData(MOVIE(movieId)).then(() => {
+                                            fetchMovies();
+
+                                            navigate('/')
+                                        })
+                                    }}>
+                                        Delete
+                                    </Button>
+                                }
                             </Form>
                         </Row>
                     </Card.Body>

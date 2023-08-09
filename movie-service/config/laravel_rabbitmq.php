@@ -3,7 +3,7 @@
 return [
     'connections' => [
         'connection' => [
-            'hostname' => '172.18.0.3'
+            'hostname' => 'rabbit'
         ],
     ],
     'exchanges' => [
