@@ -2,13 +2,13 @@
 ```
 git clone git@github.com:70mmy/OhMyDB.git
 
-cd ../fe-service
+cd OhMyDB/fe-service
 npm install
 
 cd ../meta-service
 npm-install
 
-cd OhMyDB/movie-service
+cd ../movie-service
 composer install
 
 ./vendor/bin/sail up
