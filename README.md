@@ -11,6 +11,7 @@ cd ../meta-service
 npm install
 
 cd ../movie-service
+cp .env.example .env
 composer install
 
 ./vendor/bin/sail up
